@@ -5,7 +5,7 @@ dir='/p/largedata/hhb19/jstreffi/runtime/awicm-3.1/'
 for exp in  'PIC3' #'HIST' '4CO2' '1PCT'
 do
         if [ $exp == PIC3 ]; then
-                start=1990
+                start=2049
                 end=2990
         elif [ $res == HIST ]; then
                 start=1850
