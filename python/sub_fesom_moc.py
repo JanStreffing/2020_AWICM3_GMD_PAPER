@@ -234,9 +234,10 @@ def plot_xmoc(lat, depth, moc, bottom=[], which_moc='gmoc',
     cmin,cmax,cref  = moc[np.where(depth<=-500)[0][0]::,:].min(),moc[np.where(depth<=-500)[0][0]::,:].max(),0.0 # [cmin, cmax, cref]  --> MLD2
     if len(crange)!=0: cmin,cmax,cref = crange[0],crange[1],0.0
     print(cmin,cmax,cref)
-    cmap0,clevel = colormap_c2c(cmin,cmax,cref,cnumb,'darkblue2orange')
+    cmap0,clevel = colormap_c2c(-5,20,cref,cnumb,'PuOr_r')
     cbot = [0.5,0.5,0.5]
     do_drawedges=True
+    print(clevel)
     if clevel.size>30: do_drawedges=False
 
     #+_________________________________________________________________________+
@@ -265,7 +266,7 @@ def plot_xmoc(lat, depth, moc, bottom=[], which_moc='gmoc',
     #+_________________________________________________________________________+
     #| plot first colorbar                                                     |
     #+_________________________________________________________________________+
-    cbar1 = plt.colorbar(hp1,ax=ax1,ticks=clevel,drawedges=True,extendrect=False,extendfrac='auto')
+    cbar1 = plt.colorbar(hp1,ax=ax1,ticks=clevel,drawedges=True,extend='neither',extendrect=False,extendfrac='auto')
     cbar1.set_label('Global Meridional Overturning Circulation [Sv]'+'\n'+str_time, size=fsize+2)
     if which_moc=='gmoc':
         cbar1.set_label('Global Meridional Overturning Circulation [Sv]'+'\n'+str_time, size=fsize+2)
@@ -295,8 +296,6 @@ def plot_xmoc(lat, depth, moc, bottom=[], which_moc='gmoc',
     idxb[idx_cref::nstep]  = False
     idxb[idx_cref::-nstep] = False
     idx = idx[idxb==True]
-    #for ii in list(idx):
-    #    tickl[ii]=48
     cbar1.ax.set_yticklabels(tickl)
     
     fig.canvas.draw()
@@ -344,7 +343,7 @@ def plot_xmoc_tseries(time,moc_t,which_lat=['max'],which_moc='amoc',str_descript
     ax.yaxis.set_minor_locator(AutoMinorLocator(4))
     ax.xaxis.set_minor_locator(minor_locator)
     plt.grid(which='major')
-    plt.xticks(np.arange(0,3000,50))
+    plt.xticks(np.arange(0,3000,10))
     plt.xlim(time[0]-(time[-1]-time[0])*0.015,time[-1]+(time[-1]-time[0])*0.015)    
     plt.show(block=False)
     

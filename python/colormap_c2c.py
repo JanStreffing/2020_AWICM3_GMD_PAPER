@@ -12,7 +12,8 @@ def colormap_c2c(cmin,cmax,cref,cnumb,cname,cstep=[]):
     
     # colormaps are:
     # --> blue2red
-    # --> darkblue2orange
+    # --> PuOr
+    # --> PuOr_r
     # --> red2blue
     # --> grads
     # --> rainbow
@@ -77,12 +78,19 @@ def colormap_c2c(cmin,cmax,cref,cnumb,cname,cstep=[]):
                     ((cref-clevel[0])/cdelta2                        , [1.0, 1.0 , 1.0]),
                     ((cref-clevel[0]+(clevel[-1]-cref)/2)/cdelta2    , [1.0, 0.6 , 0.0]),
                     ((clevel[-1]-clevel[0])/cdelta2                    , [1.0, 0.19, 0.0] )]
-    if cname=='darkblue2orange':
-        cmap_def = [(0.0                                            , [0.0, 0.0, 0.5]),
-                    (((cref-clevel[0])/2)/cdelta2                    , [0.0, 0.52, 0.80]),
-                    ((cref-clevel[0])/cdelta2                        , [1.0, 1.0 , 1.0]),
-                    ((cref-clevel[0]+(clevel[-1]-cref)/2)/cdelta2    , [1.0, 0.6 , 0.0]),
-                    ((clevel[-1]-clevel[0])/cdelta2                    , [1.0, 0.19, 0.0] )]
+    if cname=='PuOr':
+        cmap_def = [(0.0                                            , [0.4980392156862745, 0.23137254901960785, 0.03137254901960784]),
+                    (((cref-clevel[0])/2)/cdelta2                    , [0.9319492502883506, 0.6094579008073817, 0.22422145328719714]),
+                    ((cref-clevel[0])/cdelta2                        , [0.9691657054978854, 0.9668589004229142, 0.9636293733179546]),
+                    ((cref-clevel[0]+(clevel[-1]-cref)/2)/cdelta2    , [0.601922337562476, 0.5629373317954633, 0.750480584390619]),
+                    ((clevel[-1]-clevel[0])/cdelta2                    , [0.17647058823529413, 0.0, 0.29411764705882354] )]
+        print(cmap_def)
+    if cname=='PuOr_r':
+        cmap_def = [(0.0                                            , [0.17647058823529413, 0.0, 0.29411764705882354]),
+                    (((cref-clevel[0])/2)/cdelta2                    , [0.601922337562476, 0.5629373317954633, 0.750480584390619]),
+                    ((cref-clevel[0])/cdelta2                        , [0.9691657054978854, 0.9668589004229142, 0.9636293733179546]),
+                    ((cref-clevel[0]+(clevel[-1]-cref)/2)/cdelta2    , [0.9319492502883506, 0.6094579008073817, 0.22422145328719714]),
+                    ((clevel[-1]-clevel[0])/cdelta2                    , [0.4980392156862745, 0.23137254901960785, 0.03137254901960784] )]
         print(cmap_def)
     if cname=='red2blue':
         cmap_def = [(0.0                                            , [1.0, 0.19, 0.0]),
