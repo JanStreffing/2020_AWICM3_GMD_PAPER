@@ -312,6 +312,7 @@ def plot_xmoc_tseries(time,moc_t,which_lat=['max'],which_moc='amoc',str_descript
 
     if len(figsize)==0: figsize=[13,4]
     fig,ax= plt.figure(figsize=figsize),plt.gca()
+    #time=time-700
     
     for ii in range(len(which_lat)):
         if which_lat[ii]=='max':
@@ -322,6 +323,7 @@ def plot_xmoc_tseries(time,moc_t,which_lat=['max'],which_moc='amoc',str_descript
         hp=ax.plot(time,moc_t[:,ii],\
                    linewidth=2,label=str_label,color=color[ii],\
                    path_effects=[path_effects.SimpleLineShadow(offset=(1.5,-1.5),alpha=0),path_effects.Normal()])
+        '''
         # plot mean value with trinagle 
         plt.plot(time[0]-(time[-1]-time[0])*0.015,moc_t[:,ii].mean(),\
                  marker='<',markersize=8,markeredgecolor='k',markeredgewidth=0.5,\
@@ -335,15 +337,18 @@ def plot_xmoc_tseries(time,moc_t,which_lat=['max'],which_moc='amoc',str_descript
         plt.plot(time[0]-(time[-1]-time[0])*0.015,moc_t[:,ii].mean()-moc_t[:,ii].std(),\
                  marker='v',markersize=6,markeredgecolor='k',markeredgewidth=0.5,\
                  color=hp[0].get_color(),zorder=3,clip_box=False,clip_on=False)
+        '''
         
-    ax.legend(loc='lower right', shadow=False,fancybox=True,frameon=True,mode='None')
+    ax.legend(loc='best', shadow=False,fancybox=True,frameon=True,mode='None')
     ax.set_xlabel('Time [years]',fontsize=12)
     ax.set_ylabel('{:s} in [Sv]'.format(which_moc.upper()),fontsize=12)
     minor_locator = AutoMinorLocator(5)
     ax.yaxis.set_minor_locator(AutoMinorLocator(4))
     ax.xaxis.set_minor_locator(minor_locator)
     plt.grid(which='major')
-    plt.xticks(np.arange(0,3000,10))
+    plt.xticks(np.arange(0,3000,50))
+    #plt.axvline(x=1650,color='grey',alpha=0.5,linewidth=4)
+
     plt.xlim(time[0]-(time[-1]-time[0])*0.015,time[-1]+(time[-1]-time[0])*0.015)    
     plt.show(block=False)
     
